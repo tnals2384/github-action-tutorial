@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# 워크플로우 실행 시점 제어
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # actions 탭에서 이 워크플로우를 수동으로 실행할 수 있다.
+  workflow_dispatch:
+
+#워크플로우 실행은 하나 이상의 작업으로 구성되고, 이런 작업은 순차적으로 또는 병렬로 실행될 수 있다.
+jobs:
+  # 이 워크플로우는 "build"라고 불리는 단일 작업을 포함한다.
+  build:
+    # The type of runner that the job will run on 기본적으로 ubuntu-latest vm 사용
+    runs-on: ubuntu-latest
+
+    # 단계는 작업의 일부로 실행될 일련의 작업을 나타낸다.
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # 워크플로우가 실행되는 가상 환경에 내 저장소의 코드를 체크아웃하여 접근할 수 있도록 한다.
+      - uses: actions/checkout@v4
+
+      # 러너 셸을 이용하여 단일 명령을 실행
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
